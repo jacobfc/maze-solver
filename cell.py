@@ -2,7 +2,7 @@ from point_line import Point, Line
 
 
 class Cell:
-    def __init__(self, window):
+    def __init__(self, window=None):
         self.has_left_wall = True
         self.has_right_wall = True
         self.has_top_wall = True
@@ -31,17 +31,18 @@ class Cell:
         line_left = Line(p1, p3)  # left == x1
         line_right = Line(p2, p4)  # right == x2
 
-        if self.has_left_wall:
-            self.__win.draw_line(line_left, "black")
+        if self.__win is not None:  # only draw lines if a window is provided
+            if self.has_left_wall:
+                self.__win.draw_line(line_left, "black")
 
-        if self.has_top_wall:
-            self.__win.draw_line(line_top, "black")
+            if self.has_top_wall:
+                self.__win.draw_line(line_top, "black")
 
-        if self.has_right_wall:
-            self.__win.draw_line(line_right, "black")
+            if self.has_right_wall:
+                self.__win.draw_line(line_right, "black")
 
-        if self.has_bottom_wall:
-            self.__win.draw_line(line_bottom, "black")
+            if self.has_bottom_wall:
+                self.__win.draw_line(line_bottom, "black")
 
     def draw_move(self, to_cell, undo=False):
         # draws a line from the center of 1 cell, to the center of another cell
@@ -62,4 +63,5 @@ class Cell:
         if undo:
             line_color = "grey"
 
-        self.__win.draw_line(centers_line, line_color)
+        if self.__win is not None:  # only draw lines if a window is provided
+            self.__win.draw_line(centers_line, line_color)
