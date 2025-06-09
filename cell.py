@@ -1,5 +1,8 @@
 from point_line import Point, Line
 
+wall_color = "black"
+empty_color = "#d9d9d9"
+
 
 class Cell:
     def __init__(self, window=None):
@@ -12,6 +15,9 @@ class Cell:
         self.__y1 = -1
         self.__y2 = -1
         self.__win = window
+
+        # Track whether the cell has been visited by wall-breaking algorithm
+        self.visited = False
 
     def draw(self, x1, x2, y1, y2):
         # TODO: assert that x1 < x2, and y1 < y2?
@@ -32,17 +38,37 @@ class Cell:
         line_right = Line(p2, p4)  # right == x2
 
         if self.__win is not None:  # only draw lines if a window is provided
+            # left
             if self.has_left_wall:
-                self.__win.draw_line(line_left, "black")
+                line_color = wall_color
+            else:
+                line_color = empty_color
 
+            self.__win.draw_line(line_left, line_color)
+
+            # top
             if self.has_top_wall:
-                self.__win.draw_line(line_top, "black")
+                line_color = wall_color
+            else:
+                line_color = empty_color
 
+            self.__win.draw_line(line_top, line_color)
+
+            # right
             if self.has_right_wall:
-                self.__win.draw_line(line_right, "black")
+                line_color = wall_color
+            else:
+                line_color = empty_color
 
+            self.__win.draw_line(line_right, line_color)
+
+            # bottom
             if self.has_bottom_wall:
-                self.__win.draw_line(line_bottom, "black")
+                line_color = wall_color
+            else:
+                line_color = empty_color
+
+            self.__win.draw_line(line_bottom, line_color)
 
     def draw_move(self, to_cell, undo=False):
         # draws a line from the center of 1 cell, to the center of another cell

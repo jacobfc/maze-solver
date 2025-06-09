@@ -36,8 +36,9 @@ def main():
     cell_2.draw_move(cell_3)
     """
 
-    # maze = Maze(50, 50, 2, 2, 50, 50, win)
-    maze = Maze(20, 20, 30, 30, 8, 8, win, sleep_timer=0.03)
+    # maze = Maze(50, 50, 3, 3, 50, 50, win, sleep_timer=0.1, seed=0)
+    maze = Maze(50, 50, 12, 12, 15, 15, win, sleep_timer=0.1, seed=0)
+    # maze = Maze(20, 20, 30, 30, 8, 8, win, sleep_timer=0.01, seed=0)
     # always comes last
     win.wait_for_close()
 
