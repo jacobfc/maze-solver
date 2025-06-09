@@ -1,11 +1,11 @@
 from window import Window
 from point_line import Line, Point
 from cell import Cell
+from maze import Maze
 
 
 def main():
     win = Window(800, 600)
-    # win.wait_for_close()
 
     """
     point_1 = Point(20, 80)
@@ -21,6 +21,7 @@ def main():
     win.draw_line(line3, "green")
     """
 
+    """
     cell_1 = Cell(win)
     cell_1.has_left_wall = False
     cell_1.draw(20, 80, 150, 180)
@@ -33,6 +34,10 @@ def main():
 
     cell_1.draw_move(cell_2, undo=True)
     cell_2.draw_move(cell_3)
+    """
+
+    # maze = Maze(50, 50, 2, 2, 50, 50, win)
+    maze = Maze(20, 20, 30, 30, 8, 8, win, sleep_timer=0.03)
     # always comes last
     win.wait_for_close()
 
