@@ -17,7 +17,10 @@ class Cell:
         self.__win = window
 
         # Track whether the cell has been visited by wall-breaking algorithm
-        self.visited = False
+        self.visited_during_generation = False
+
+        # Track whether the cell has been visited by the maze solver
+        self.visited_during_solving = False
 
     def draw(self, x1, x2, y1, y2):
         # TODO: assert that x1 < x2, and y1 < y2?

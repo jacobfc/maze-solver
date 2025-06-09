@@ -33,11 +33,9 @@ class Maze:
         self.__cells = []
         self.__create_cells()
 
+        # generate maze
         self.__break_entrance_and_exit()
-
-        self.__break_walls_r(
-            random.randrange(self.num_cols), random.randrange(self.num_rows)
-        )
+        self.__break_walls_r(0, 0)
 
     def __create_cells(self):
         for column in range(self.num_cols):
@@ -130,7 +128,7 @@ class Maze:
 
     def __break_walls_r(self, i, j):
         # 1) Mark the current cell as visited
-        self.__cells[i][j].visited = True
+        self.__cells[i][j].visited_during_generation = True
 
         # 2) In an infinite loop:
         while True:
@@ -143,7 +141,7 @@ class Maze:
             adjacent_cells = self.__get_adjacent_cells(i, j)
             for tuple in adjacent_cells:
                 x, y = tuple
-                if self.__cells[x][y].visited is False:
+                if self.__cells[x][y].visited_during_generation is False:
                     cells_to_possibly_visit.append(tuple)
 
             print(
