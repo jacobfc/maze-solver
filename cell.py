@@ -14,6 +14,7 @@ class Cell:
         self.__win = window
 
     def draw(self, x1, x2, y1, y2):
+        # TODO: assert that x1 < x2, and y1 < y2?
         self.__x1 = x1
         self.__x2 = x2
         self.__y1 = y1
@@ -41,3 +42,24 @@ class Cell:
 
         if self.has_bottom_wall:
             self.__win.draw_line(line_bottom, "black")
+
+    def draw_move(self, to_cell, undo=False):
+        # draws a line from the center of 1 cell, to the center of another cell
+
+        # find center of self and to_cell
+        self_x_center = abs(self.__x1 + self.__x2) / 2
+        self_y_center = abs(self.__y1 + self.__y2) / 2
+        self_center_point = Point(self_x_center, self_y_center)
+
+        other_x_center = (to_cell.__x1 + to_cell.__x2) / 2
+        other_y_center = (to_cell.__y1 + to_cell.__y2) / 2
+        other_center_point = Point(other_x_center, other_y_center)
+
+        # create line from center points
+        centers_line = Line(self_center_point, other_center_point)
+
+        line_color = "red"
+        if undo:
+            line_color = "grey"
+
+        self.__win.draw_line(centers_line, line_color)

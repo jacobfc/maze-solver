@@ -28,6 +28,11 @@ def main():
     cell_2 = Cell(win)
     cell_2.draw(5, 10, 10, 15)
 
+    cell_3 = Cell(win)
+    cell_3.draw(100, 150, 100, 150)
+
+    cell_1.draw_move(cell_2, undo=True)
+    cell_2.draw_move(cell_3)
     # always comes last
     win.wait_for_close()
 
